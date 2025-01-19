@@ -305,7 +305,6 @@ const santoral = {
 "28-11": "Blanca",
 "29-11": "Saturnino",
 "30-11": "Andrés",
-// Diciembre
 "01-12": "Florencia",
 "02-12": "Viviana",
 "03-12": "Francisco Javier",
@@ -339,26 +338,73 @@ const santoral = {
 "31-12": "Silvestre",
 };
 
-// Función para obtener el santoral del día actual
+// Mostrar el santoral del día actual
 function obtenerSantoralDelDia() {
-  // Obtener la fecha actual
   const hoy = new Date();
   const dia = hoy.getDate().toString().padStart(2, "0");
   const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
   const claveFecha = `${dia}-${mes}`;
-
-  // Buscar el santoral correspondiente
-  const santoralHoy = santoral[claveFecha] || "No hay santos registrados para hoy.";
-  return santoralHoy;
+  return santoral[claveFecha] || "No hay santos registrados para hoy.";
 }
 
-// Mostrar el santoral del día en el elemento correspondiente
 function mostrarSantoral() {
-  const elementoSantoral = document.getElementById("santoralHoy");
-  if (elementoSantoral) {
-    elementoSantoral.textContent = obtenerSantoralDelDia();
-  }
+  document.getElementById("santoralHoy").textContent = obtenerSantoralDelDia();
 }
 
-// Ejecutar la función al cargar la página
-document.addEventListener("DOMContentLoaded", mostrarSantoral);
+// Navegación por fechas
+function mostrarSantoralPorFecha() {
+  const fechaInput = document.getElementById("fechaSelector").value;
+  if (!fechaInput) return;
+  const [year, month, day] = fechaInput.split("-");
+  const claveFecha = `${day.padStart(2, "0")}-${month.padStart(2, "0")}`;
+  const resultado = santoral[claveFecha] || "No hay santos registrados para esta fecha.";
+  document.getElementById("santoralFechaSeleccionada").textContent = resultado;
+}
+
+// Búsqueda por nombre del santo
+function buscarSanto() {
+  const nombre = document.getElementById("nombreSanto").value.toLowerCase();
+  const resultados = Object.entries(santoral).filter(([fecha, santos]) =>
+    santos.toLowerCase().includes(nombre)
+  );
+  const listaResultados = document.getElementById("resultadosBusqueda");
+  listaResultados.innerHTML = resultados.length
+    ? resultados.map(([fecha, santos]) => `<li>${fecha}: ${santos}</li>`).join("")
+    : "<li>No se encontraron resultados.</li>";
+}
+
+// Generar calendario interactivo
+function generarCalendario() {
+  const contenedor = document.getElementById("calendarioContainer");
+  const hoy = new Date();
+  const mesActual = hoy.getMonth() + 1; // Mes actual
+  const diasEnMes = new Date(hoy.getFullYear(), mesActual, 0).getDate();
+
+  let calendarioHTML = "<table><tr>";
+  for (let dia = 1; dia <= diasEnMes; dia++) {
+    const claveFecha = `${String(dia).padStart(2, "0")}-${String(mesActual).padStart(2, "0")}`;
+    calendarioHTML += `
+      <td onclick="mostrarSantoralPorFechaCalendario('${claveFecha}')">
+        ${dia}
+      </td>
+    `;
+    if (dia % 7 === 0) calendarioHTML += "</tr><tr>"; // Nueva fila cada 7 días
+  }
+  calendarioHTML += "</tr></table>";
+  contenedor.innerHTML = calendarioHTML;
+}
+
+function mostrarSantoralPorFechaCalendario(claveFecha) {
+  const resultado = santoral[claveFecha] || "No hay santos registrados para esta fecha.";
+  alert(`Santoral del ${claveFecha}: ${resultado}`);
+}
+
+// Modo oscuro
+function toggleModoOscuro() {
+  document.body.classList.toggle("modo-oscuro");
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  mostrarSantoral();
+  generarCalendario();
+});
