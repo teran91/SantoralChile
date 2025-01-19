@@ -373,10 +373,6 @@ function buscarSanto() {
     : "<li>No se encontraron resultados.</li>";
 }
 
-// Modo oscuro
-function toggleModoOscuro() {
-  document.body.classList.toggle("modo-oscuro");
-}
 
 // Ejecutar al cargar
 document.addEventListener("DOMContentLoaded", mostrarSantoral);
