@@ -36,19 +36,56 @@
       font-weight: bold;
       font-size: 1.2rem;
     }
+
+    /* Estilos para modo oscuro */
+    body.modo-oscuro {
+      background-color: #121212;
+      color: #ffffff;
+    }
+
+    .modo-oscuro .mes {
+      background-color: #333333;
+      color: #ffffff;
+      border-color: #555555;
+    }
   </style>
+  <script defer src="script.js"></script>
 </head>
 <body>
   <header>
     <h1>Santoral Diario en Chile</h1>
+    <button id="modoOscuroToggle" onclick="toggleModoOscuro()">Modo Oscuro</button>
   </header>
   <main>
+    <!-- Santoral del Día -->
     <section id="santoral-dia">
-  <h2>Santoral del Día</h2>
-  <p id="santoralHoy">Cargando el santoral del día...</p>
-</section>
-<script defer src="script.js"></script>
+      <h2>Santoral del Día</h2>
+      <p id="santoralHoy">Cargando el santoral del día...</p>
+    </section>
 
+    <!-- Navegación por fechas -->
+    <section id="navegacion-fechas">
+      <h2>Consulta Santoral por Fecha</h2>
+      <input type="date" id="fechaSelector">
+      <button onclick="mostrarSantoralPorFecha()">Consultar</button>
+      <p id="santoralFechaSeleccionada"></p>
+    </section>
+
+    <!-- Búsqueda por nombre del santo -->
+    <section id="busqueda-santos">
+      <h2>Buscar Santo</h2>
+      <input type="text" id="nombreSanto" placeholder="Escribe el nombre del santo">
+      <button onclick="buscarSanto()">Buscar</button>
+      <ul id="resultadosBusqueda"></ul>
+    </section>
+
+    <!-- Calendario interactivo -->
+    <section id="calendarioInteractivo">
+      <h2>Calendario Interactivo</h2>
+      <div id="calendarioContainer"></div>
+    </section>
+
+    <!-- Calendario anual (manteniendo diseño base) -->
     <section id="calendario">
       <h2>Calendario Anual</h2>
       <div class="calendario">
