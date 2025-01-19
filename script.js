@@ -373,66 +373,10 @@ function buscarSanto() {
     : "<li>No se encontraron resultados.</li>";
 }
 
-// Generar calendario interactivo
-function generarCalendario() {
-  const contenedor = document.getElementById("calendarioContainer");
-  const hoy = new Date();
-  const mesActual = hoy.getMonth(); // Mes actual (0 indexado, es decir, enero = 0)
-  const diasEnMes = new Date(hoy.getFullYear(), mesActual + 1, 0).getDate(); // Días del mes actual
-
-  // Generar el calendario
-  let calendarioHTML = "<table border='1' style='width: 100%; text-align: center;'>";
-  calendarioHTML += "<thead><tr><th colspan='7'>Días del Mes</th></tr></thead>";
-  calendarioHTML += "<tbody><tr>";
-
-  // Variables para organizar la estructura semanal
-  const primerDiaSemana = new Date(hoy.getFullYear(), mesActual, 1).getDay(); // Primer día del mes (0=domingo)
-  const diasSemana = ["Dom", "Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
-
-  // Agregar encabezados de los días de la semana
-  calendarioHTML += diasSemana.map((dia) => `<th>${dia}</th>`).join("");
-  calendarioHTML += "</tr><tr>";
-
-  // Rellenar días vacíos antes del primer día del mes
-  for (let i = 0; i < primerDiaSemana; i++) {
-    calendarioHTML += "<td></td>";
-  }
-
-  // Agregar los días del mes
-  for (let dia = 1; dia <= diasEnMes; dia++) {
-    const claveFecha = `${String(dia).padStart(2, "0")}-${String(mesActual + 1).padStart(2, "0")}`;
-    calendarioHTML += `
-      <td onclick="mostrarSantoralPorFechaCalendario('${claveFecha}')" style="cursor: pointer;">
-        ${dia}
-      </td>
-    `;
-    // Si es el último día de la semana, cerrar fila y abrir una nueva
-    if ((primerDiaSemana + dia) % 7 === 0) {
-      calendarioHTML += "</tr><tr>";
-    }
-  }
-
-  // Rellenar los días vacíos al final del mes
-  const diasRestantes = (primerDiaSemana + diasEnMes) % 7;
-  if (diasRestantes !== 0) {
-    for (let i = diasRestantes; i < 7; i++) {
-      calendarioHTML += "<td></td>";
-    }
-  }
-
-  calendarioHTML += "</tr></tbody></table>";
-
-  // Insertar el calendario en el contenedor
-  contenedor.innerHTML = calendarioHTML;
+// Modo oscuro
+function toggleModoOscuro() {
+  document.body.classList.toggle("modo-oscuro");
 }
 
-// Función para mostrar el santoral de una fecha seleccionada en el calendario
-function mostrarSantoralPorFechaCalendario(claveFecha) {
-  const resultado = santoral[claveFecha] || "No hay santos registrados para esta fecha.";
-  alert(`Santoral del ${claveFecha}: ${resultado}`);
-}
-
-// Llamar a la función al cargar la página
-document.addEventListener("DOMContentLoaded", () => {
-  generarCalendario();
-});
+// Ejecutar al cargar
+document.addEventListener("DOMContentLoaded", mostrarSantoral);
