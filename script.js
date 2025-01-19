@@ -1,4 +1,4 @@
-// Santoral completo (añade más días según sea necesario)
+// Santoral completo por días y meses
 const santoral = {
   "01-01": "María, Madre de Dios",
   "02-01": "Basilio, Gregorio",
@@ -31,7 +31,66 @@ const santoral = {
   "29-01": "Valerio",
   "30-01": "Martina",
   "31-01": "Juan Bosco, Marcela",
-  // Continúa añadiendo más días para otros meses
+  "01-02": "Severiano",
+  "02-02": "Presentación del Señor",
+  "03-02": "Blas, Oscar",
+  "04-02": "Gilberto",
+  "05-02": "Agueda",
+  "06-02": "Doris, Pablo Miki",
+  "07-02": "Gastón",
+  "08-02": "Jerónimo Emiliano, Jacqueline",
+  "09-02": "Rebeca",
+  "10-02": "Escolástica",
+  "11-02": "Nuestra Señora de Lourdes",
+  "12-02": "Panfilio, Pamela",
+  "13-02": "Beatriz",
+  "14-02": "Cirilo, Metodio, Valentino",
+  "15-02": "Fausto-ino, Jovita",
+  "16-02": "Samuel",
+  "17-02": "Alexis",
+  "18-02": "Bernardita",
+  "19-02": "Álvaro",
+  "20-02": "Eleuterio, Claudio",
+  "21-02": "Pedro Damián, Severino",
+  "22-02": "Eleonora, Nora",
+  "23-02": "Florencio",
+  "24-02": "Rubén, Sergio",
+  "25-02": "Néstor",
+  "26-02": "Augusto",
+  "27-02": "Leandro, Gabriel Dol",
+  "28-02": "Román",
+  "01-03": "Rosendo",
+  "02-03": "Lucio",
+  "03-03": "Celedonio",
+  "04-03": "Ariel",
+  "05-03": "Olivia",
+  "06-03": "Elcira",
+  "07-03": "Perpétua, Felicidad",
+  "08-03": "Juan de Dios",
+  "09-03": "Francisca Romana",
+  "10-03": "Macario",
+  "11-03": "Eulogio",
+  "12-03": "Norma",
+  "13-03": "Rodrigo",
+  "14-03": "Matilde",
+  "15-03": "Luisa de Marillac",
+  "16-03": "Heriberto",
+  "17-03": "Patricio",
+  "18-03": "Cirilo",
+  "19-03": "José",
+  "20-03": "Alejandra",
+  "21-03": "Eugenia",
+  "22-03": "Lea",
+  "23-03": "Dimas",
+  "24-03": "Elba, Catalina de Suecia",
+  "25-03": "Anunciación",
+  "26-03": "Braulio",
+  "27-03": "Ruperto",
+  "28-03": "Octavio",
+  "29-03": "Gladys",
+  "30-03": "Artemio",
+  "31-03": "Benjamín, Balbina",
+  // Continúa añadiendo los días de Abril a Diciembre
 };
 
 // Función para obtener el santoral del día actual
@@ -57,4 +116,3 @@ function mostrarSantoral() {
 
 // Ejecutar la función al cargar la página
 document.addEventListener("DOMContentLoaded", mostrarSantoral);
-
