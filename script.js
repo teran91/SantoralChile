@@ -369,18 +369,34 @@ const santoral = {
 };
 
 // Mostrar el santoral del día actual
-function obtenerSantoralDelDia() {
-  const hoy = new Date();
-  const dia = hoy.getDate().toString().padStart(2, "0");
-  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
-  const claveFecha = `${dia}-${mes}`;
+function mostrarSantoral() {
+  const textoFecha = obtenerFechaFormateada();
+  const santoralHoy = obtenerSantoralDelDia();
+
+  const elemento = document.getElementById("santoralHoy");
+  elemento.textContent = `Santoral del día | ${textoFecha}: ${santoralHoy}`;
   return santoral[claveFecha] || "No hay santos registrados para hoy.";
 }
 
 function mostrarSantoral() {
   document.getElementById("santoralHoy").textContent = obtenerSantoralDelDia();
 }
+// fecga dia
+function obtenerFechaFormateada() {
+  const hoy = new Date();
 
+  const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
+  const meses = [
+    "enero", "febrero", "marzo", "abril", "mayo", "junio",
+    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
+  ];
+
+  const nombreDia = dias[hoy.getDay()];
+  const diaNumero = hoy.getDate();
+  const nombreMes = meses[hoy.getMonth()];
+
+  return `${nombreDia} ${diaNumero} de ${nombreMes}`;
+}
 // Navegación por fechas
 function mostrarSantoralPorFecha() {
   const fechaInput = document.getElementById("fechaSelector").value;
