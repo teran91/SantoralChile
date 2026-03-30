@@ -369,19 +369,13 @@ const santoral = {
 };
 
 // Mostrar el santoral del día actual
-function mostrarSantoral() {
-  const textoFecha = obtenerFechaFormateada();
-  const santoralHoy = obtenerSantoralDelDia();
-
-  const elemento = document.getElementById("santoralHoy");
-  elemento.textContent = `Santoral del día | ${textoFecha}: ${santoralHoy}`;
+function obtenerSantoralDelDia() {
+  const hoy = new Date();
+  const dia = hoy.getDate().toString().padStart(2, "0");
+  const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
+  const claveFecha = `${dia}-${mes}`;
   return santoral[claveFecha] || "No hay santos registrados para hoy.";
-}
-
-function mostrarSantoral() {
-  document.getElementById("santoralHoy").textContent = obtenerSantoralDelDia();
-}
-// fecga dia
+// fecha dia
 function obtenerFechaFormateada() {
   const hoy = new Date();
 
