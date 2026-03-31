@@ -366,6 +366,12 @@ const santoral = {
 "29-12": "Tomás Becket, David",
 "30-12": "Rogelio",
 "31-12": "Silvestre",
+// Santoral completo (ejemplo reducido)
+const santoral = {
+  "01-01": "María, Madre de Dios",
+  "02-01": "Basilio, Gregorio",
+  "03-01": "Genoveva",
+  // Agrega el santoral completo aquí...
 };
 
 // Mostrar el santoral del día actual
@@ -375,22 +381,12 @@ function obtenerSantoralDelDia() {
   const mes = (hoy.getMonth() + 1).toString().padStart(2, "0");
   const claveFecha = `${dia}-${mes}`;
   return santoral[claveFecha] || "No hay santos registrados para hoy.";
-// fecha dia
-function obtenerFechaFormateada() {
-  const hoy = new Date();
-
-  const dias = ["domingo", "lunes", "martes", "miércoles", "jueves", "viernes", "sábado"];
-  const meses = [
-    "enero", "febrero", "marzo", "abril", "mayo", "junio",
-    "julio", "agosto", "septiembre", "octubre", "noviembre", "diciembre"
-  ];
-
-  const nombreDia = dias[hoy.getDay()];
-  const diaNumero = hoy.getDate();
-  const nombreMes = meses[hoy.getMonth()];
-
-  return `${nombreDia} ${diaNumero} de ${nombreMes}`;
 }
+
+function mostrarSantoral() {
+  document.getElementById("santoralHoy").textContent = obtenerSantoralDelDia();
+}
+
 // Navegación por fechas
 function mostrarSantoralPorFecha() {
   const fechaInput = document.getElementById("fechaSelector").value;
@@ -413,6 +409,10 @@ function buscarSanto() {
     : "<li>No se encontraron resultados.</li>";
 }
 
+// Modo oscuro
+function toggleModoOscuro() {
+  document.body.classList.toggle("modo-oscuro");
+}
 
 // Ejecutar al cargar
 document.addEventListener("DOMContentLoaded", mostrarSantoral);
